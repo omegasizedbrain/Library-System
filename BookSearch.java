@@ -143,6 +143,7 @@ public class BookSearch extends Application {
       pane.getChildren().add(BTSubmit);
 
       Scene scene = new Scene(pane, 500, 500); // Creates a new scene with the pane in it, and sets its size
+      secondStage.setResizable(false);
       secondStage.setTitle("Add Book to System"); // Set the stage title
       secondStage.setScene(scene); // Place the scene in the stage
       return secondStage;

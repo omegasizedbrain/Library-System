@@ -11,21 +11,28 @@ import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class BookSearch extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) throws FileNotFoundException{
 
-    Pane pane = new Pane();
+    StackPane pane = new StackPane();
+
     TextField txtSearch = new TextField("Search");
     Button BTSearch = new Button("Search");
     Button BTAdd = new Button("Add");
     Button BTRefresh = new Button("Refresh");
     Button BTSave = new Button("Save & Quit");
+    ScrollPane pane2 = new ScrollPane();
+    Pane pane3 = new Pane();
+    Pane pane4 = new Pane();
     
     File file = new File("Inventory.txt");
     Library inv = new Library(file);
@@ -53,28 +60,23 @@ public class BookSearch extends Application {
     BTAdd.setTranslateX(0);
     BTRefresh.setTranslateX(50);
     BTRefresh.setTranslateY(50);
-    BTSave.setTranslateY(470);
-    ScrollBar scroll = new ScrollBar();
+    BTSave.setTranslateY(460);
     Text title = new Text("Book Search System");
-    scroll.setOrientation(Orientation.VERTICAL);
     title.setTranslateY(10);
-    scroll.setTranslateX(475);
-    scroll.setTranslateY(100);
-    scroll.setScaleY(3);
-    scroll.setMax(500);
     result.setX(200);
     result.setY(10);
+    pane2.setTranslateX(100);
+    pane2.setFitToWidth(true);
+    pane2.setFitToHeight(true);
 
-    scroll.setOnMouseClicked(e -> {
-        result.setTranslateY(scroll.getValue() * -1);
-    });
-      scroll.setOnScroll(e -> {
-          result.setTranslateY(scroll.getValue() * -1);
-      });
     txtSearch.setTranslateY(20);
     BTSearch.setTranslateY(20);
     BTSearch.setTranslateX(100);
-    pane.getChildren().addAll(title,scroll,txtSearch,BTSearch,result,BTAdd,BTRefresh,BTSave);
+    pane2.setMaxWidth(300);
+    pane2.setContent(result);
+    pane3.getChildren().addAll(title,txtSearch,BTSearch);
+    pane4.getChildren().addAll(BTAdd,BTRefresh,BTSave);
+    pane.getChildren().addAll(pane2, pane3, pane4);
 
     // Create a scene and place it in the stage
     Scene scene = new Scene(pane, 500, 500);
@@ -133,8 +135,6 @@ public class BookSearch extends Application {
       secondStage.setTitle("Add Book to System"); // Set the stage title
       secondStage.setScene(scene); // Place the scene in the stage
       return secondStage;
-
-
   }
 
   public static void search(TextField txtSearch, Text result, ArrayList<Book> list){

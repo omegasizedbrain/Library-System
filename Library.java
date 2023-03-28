@@ -51,12 +51,6 @@ public class Library {
 		return inventory;
 	}
 
-	public void addNew(String title, String volumeNumber, String author, String genre, String shelfNumber)throws FileNotFoundException{
-		PrintWriter outputFile = new PrintWriter(myFile);
-		String str = new Book(title, volumeNumber, author, genre, shelfNumber).textFormat();
-		outputFile.println(addBookText() + str);
-		outputFile.close();
-	}
 	public String setText(){
 		String result = "";
 		for(int i = 0; i < inventory.size(); i++) {

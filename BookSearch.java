@@ -34,7 +34,6 @@ public class BookSearch extends Application {
     TextField txtSearch = new TextField("Search");
     Button BTSearch = new Button("Search");
     Button BTAdd = new Button("Add");
-    Button BTRefresh = new Button("Refresh");
     Button BTSave = new Button("Save & Quit");
     File file = new File("Inventory.txt");
     Library inv = new Library(file);
@@ -45,11 +44,8 @@ public class BookSearch extends Application {
     txtSearch.setOnAction(e -> search(txtSearch, result, inv.getInv())); // Allows you to press enter after typing to search
     BTSearch.setOnAction(e -> search(txtSearch, result, inv.getInv())); // Allows you to press the search button when done typing
     BTAdd.setOnAction(e -> {
-        Stage newStage = createNewStage(inv); // Creates a new stage with the features defined in the createNewStage class
+        Stage newStage = createNewStage(inv, result); // Creates a new stage with the features defined in the createNewStage class
         newStage.show(); // Displays the Stage
-    });
-    BTRefresh.setOnAction(e -> {
-            result.setText(inv.setText()); // Redraws the results in the Textbox using the ArrayList
     });
     BTSave.setOnAction(e ->{
         try {
@@ -62,8 +58,6 @@ public class BookSearch extends Application {
     // set locations of the nodes within the panes
     BTAdd.setTranslateY(50);
     BTAdd.setTranslateX(57);
-    BTRefresh.setTranslateX(100);
-    BTRefresh.setTranslateY(50);
     BTSave.setTranslateY(460);
     title.setTranslateY(10);
     result.setX(200);
@@ -81,7 +75,7 @@ public class BookSearch extends Application {
 
     // Add Nodes to their respective panes
     pane3.getChildren().addAll(title);
-    pane4.getChildren().addAll(txtSearch,BTSearch, BTAdd,BTRefresh,BTSave);
+    pane4.getChildren().addAll(txtSearch,BTSearch, BTAdd,BTSave);
     pane.getChildren().addAll(pane2, pane3, pane4);
 
     // Create a scene and place it in the stage
@@ -97,7 +91,7 @@ public class BookSearch extends Application {
   }
 
 // Creates and returns a new Stage consisting of 5 Test fields and a Button to add a new book to ArrayList
-  public static Stage createNewStage(Library inv){
+  public static Stage createNewStage(Library inv, Text result){
       Stage secondStage = new Stage(); // Creates a new scene
       Pane pane = new Pane(); // Creates a new Pane
       // Creates 5 TextField nodes and the submit button
@@ -114,6 +108,7 @@ public class BookSearch extends Application {
               inv.getInv().add(new Book(txtTitle.getText(), txtVolume.getText(),
                       txtAuthor.getText(), txtGenre.getText(), txtShelfNumber.getText()));
               secondStage.close(); // Closes the new Stage
+          result.setText(inv.setText()); // Redraws the list of books
       });
       // Sets the locations of the nodes
       txtTitle.setTranslateY(10);

@@ -1,4 +1,5 @@
 package LibrarySystem;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,10 +8,13 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,7 +22,7 @@ public class BookSearch extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) throws FileNotFoundException{
 
-    GridPane pane = new GridPane();
+    Pane pane = new Pane();
     TextField txtSearch = new TextField("Search");
     Button BTSearch = new Button("Search");
     
@@ -31,10 +35,25 @@ public class BookSearch extends Application {
     pane.setPadding(new Insets(10, 10, 10, 10));
     txtSearch.setOnAction(search);
     BTSearch.setOnAction(search);
-    pane.add(new Text("Book Search System"), 0, 0);
-    pane.add(txtSearch, 0, 1);
-    pane.add(BTSearch, 1, 1);
-    pane.add(result, 6, 2);
+    ScrollBar scroll = new ScrollBar();
+    Text title = new Text("Book Search System");
+    scroll.setOrientation(Orientation.VERTICAL);
+    title.setTranslateY(10);
+    scroll.setTranslateX(475);
+    result.setX(200);
+    result.setY(10);
+
+    scroll.setOnMouseClicked(e -> {
+        result.setTranslateY(scroll.getValue() * -1);
+    });
+    txtSearch.setTranslateY(20);
+    BTSearch.setTranslateY(20);
+    BTSearch.setTranslateX(100);
+    pane.getChildren().add(title);
+    pane.getChildren().add(scroll);
+    pane.getChildren().add(txtSearch);
+    pane.getChildren().add(BTSearch);
+    pane.getChildren().add(result);
 
     // Create a scene and place it in the stage
     Scene scene = new Scene(pane, 500, 500);
@@ -57,7 +76,6 @@ public class BookSearch extends Application {
 }
 
 class SearchButton implements EventHandler<ActionEvent>{
-
     TextField txtSearch;
     Text result;
     ArrayList<Book> list;

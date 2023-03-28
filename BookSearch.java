@@ -30,12 +30,10 @@ public class BookSearch extends Application {
     File file = new File("Inventory.txt");
     Library inv = new Library(file);
     Text result = new Text(inv.setText());
-    SearchButton search = new SearchButton(txtSearch, result, inv.getInv());
-    
     
     pane.setPadding(new Insets(10, 10, 10, 10));
-    txtSearch.setOnAction(search);
-    BTSearch.setOnAction(search);
+    txtSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
+    BTSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
     BTAdd.setOnAction(e -> {
         Stage newStage = createNewStage(inv);
         newStage.show();
@@ -138,32 +136,15 @@ public class BookSearch extends Application {
 
 
   }
-}
 
-class SearchButton implements EventHandler<ActionEvent>{
-    TextField txtSearch;
-    Text result;
-    ArrayList<Book> list;
+  public static void search(TextField txtSearch, Text result, ArrayList<Book> list){
+      result.setText("");
+      for(int i = 0; i < list.size(); i++){
+          if(list.get(i).toString().toLowerCase()
+                  .contains(txtSearch.getText().toLowerCase())){
 
-    SearchButton(TextField txtSearch, Text result, ArrayList<Book> list){
-
-        this.list = list;
-        this.txtSearch = txtSearch;
-        this.result = result;
-
-    }
-
-@Override
-public void handle(ActionEvent e){
-
-        result.setText("");
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).toString().toLowerCase()
-            .contains(txtSearch.getText().toLowerCase())){
-              
-               result.setText(result.getText() + "\n" + list.get(i).toString());
-            }
-        }
-    }
-
+              result.setText(result.getText() + "\n" + list.get(i).toString());
+          }
+      }
+  }
 }

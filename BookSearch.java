@@ -23,21 +23,24 @@ public class BookSearch extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) throws FileNotFoundException{
 
+      // Created Panes
     StackPane pane = new StackPane();
+    ScrollPane pane2 = new ScrollPane();
+    Pane pane3 = new Pane();
+    Pane pane4 = new Pane();
 
+    // Created Nodes to place within Panes
+    Text title = new Text("Book Search System");
     TextField txtSearch = new TextField("Search");
     Button BTSearch = new Button("Search");
     Button BTAdd = new Button("Add");
     Button BTRefresh = new Button("Refresh");
     Button BTSave = new Button("Save & Quit");
-    ScrollPane pane2 = new ScrollPane();
-    Pane pane3 = new Pane();
-    Pane pane4 = new Pane();
-    
     File file = new File("Inventory.txt");
     Library inv = new Library(file);
     Text result = new Text(inv.setText());
-    
+
+    // Added actions to the nodes
     pane.setPadding(new Insets(10, 10, 10, 10));
     txtSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
     BTSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
@@ -56,24 +59,27 @@ public class BookSearch extends Application {
             throw new RuntimeException(ex);
         }
     });
+    // set locations of the nodes within the panes
     BTAdd.setTranslateY(50);
     BTAdd.setTranslateX(0);
     BTRefresh.setTranslateX(50);
     BTRefresh.setTranslateY(50);
     BTSave.setTranslateY(460);
-    Text title = new Text("Book Search System");
     title.setTranslateY(10);
     result.setX(200);
     result.setY(10);
-    pane2.setTranslateX(100);
-    pane2.setFitToWidth(true);
-    pane2.setFitToHeight(true);
-
     txtSearch.setTranslateY(20);
     BTSearch.setTranslateY(20);
     BTSearch.setTranslateX(100);
+
+    // set locations and parameters of the Panes
+    pane2.setTranslateX(100);
+    pane2.setFitToWidth(true);
+    pane2.setFitToHeight(true);
     pane2.setMaxWidth(300);
     pane2.setContent(result);
+
+    // Add Nodes to their respective panes
     pane3.getChildren().addAll(title,txtSearch,BTSearch);
     pane4.getChildren().addAll(BTAdd,BTRefresh,BTSave);
     pane.getChildren().addAll(pane2, pane3, pane4);

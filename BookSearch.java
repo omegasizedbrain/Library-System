@@ -61,16 +61,16 @@ public class BookSearch extends Application {
     });
     // set locations of the nodes within the panes
     BTAdd.setTranslateY(50);
-    BTAdd.setTranslateX(0);
-    BTRefresh.setTranslateX(50);
+    BTAdd.setTranslateX(57);
+    BTRefresh.setTranslateX(100);
     BTRefresh.setTranslateY(50);
     BTSave.setTranslateY(460);
     title.setTranslateY(10);
     result.setX(200);
     result.setY(10);
     txtSearch.setTranslateY(20);
-    BTSearch.setTranslateY(20);
-    BTSearch.setTranslateX(100);
+    BTSearch.setTranslateY(50);
+    BTSearch.setTranslateX(0);
 
     // set locations and parameters of the Panes
     pane2.setTranslateX(100);
@@ -80,8 +80,8 @@ public class BookSearch extends Application {
     pane2.setContent(result);
 
     // Add Nodes to their respective panes
-    pane3.getChildren().addAll(title,txtSearch,BTSearch);
-    pane4.getChildren().addAll(BTAdd,BTRefresh,BTSave);
+    pane3.getChildren().addAll(title);
+    pane4.getChildren().addAll(txtSearch,BTSearch, BTAdd,BTRefresh,BTSave);
     pane.getChildren().addAll(pane2, pane3, pane4);
 
     // Create a scene and place it in the stage
@@ -135,12 +135,7 @@ public class BookSearch extends Application {
       BTSubmit.setTranslateY(150);
 
       // Adds nodes to the pane
-      pane.getChildren().add(txtTitle);
-      pane.getChildren().add(txtVolume);
-      pane.getChildren().add(txtAuthor);
-      pane.getChildren().add(txtGenre);
-      pane.getChildren().add(txtShelfNumber);
-      pane.getChildren().add(BTSubmit);
+      pane.getChildren().addAll(txtTitle,txtVolume,txtAuthor,txtGenre,txtShelfNumber,BTSubmit);
 
       Scene scene = new Scene(pane, 500, 500); // Creates a new scene with the pane in it, and sets its size
       secondStage.setResizable(false);

@@ -10,4 +10,3 @@ Harry Potter/2/JK rowling/fantasy/5
 Harry Potter/4/JK rowling/fantasy/5
 The Vagina Bible/1/somebody/Education/1
 Calculus and Vectors/1/someone else/Education/2
-Title/Volume/Author/Genre/Shelf Number

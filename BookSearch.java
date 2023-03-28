@@ -42,19 +42,19 @@ public class BookSearch extends Application {
 
     // Added actions to the nodes
     pane.setPadding(new Insets(10, 10, 10, 10));
-    txtSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
-    BTSearch.setOnAction(e -> search(txtSearch, result, inv.getInv()));
+    txtSearch.setOnAction(e -> search(txtSearch, result, inv.getInv())); // Allows you to press enter after typing to search
+    BTSearch.setOnAction(e -> search(txtSearch, result, inv.getInv())); // Allows you to press the search button when done typing
     BTAdd.setOnAction(e -> {
-        Stage newStage = createNewStage(inv);
-        newStage.show();
+        Stage newStage = createNewStage(inv); // Creates a new stage with the features defined in the createNewStage class
+        newStage.show(); // Displays the Stage
     });
     BTRefresh.setOnAction(e -> {
-            result.setText(inv.setText());
+            result.setText(inv.setText()); // Redraws the results in the Textbox using the ArrayList
     });
     BTSave.setOnAction(e ->{
         try {
-            inv.exportInventory(file);
-            primaryStage.close();
+            inv.exportInventory(file); // Exports the new and old books to the file
+            primaryStage.close(); // Closes the stage
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
@@ -96,11 +96,11 @@ public class BookSearch extends Application {
     launch(args);
   }
 
-
+// Creates and returns a new Stage consisting of 5 Test fields and a Button to add a new book to ArrayList
   public static Stage createNewStage(Library inv){
-      Stage secondStage = new Stage();
-      Pane pane = new Pane();
-
+      Stage secondStage = new Stage(); // Creates a new scene
+      Pane pane = new Pane(); // Creates a new Pane
+      // Creates 5 TextField nodes and the submit button
       TextField txtTitle = new TextField("Title");
       TextField txtVolume = new TextField("Volume");
       TextField txtAuthor = new TextField("Author");
@@ -108,10 +108,14 @@ public class BookSearch extends Application {
       TextField txtShelfNumber = new TextField("Shelf Number");
       Button BTSubmit = new Button("Submit");
 
+      // Submit button action
       BTSubmit.setOnAction(e -> {
-              inv.getInv().add(new Book(txtTitle.getText(), txtVolume.getText(), txtAuthor.getText(), txtGenre.getText(), txtShelfNumber.getText()));
-              secondStage.close();
+            // Takes the text from the text fields and uses it to create a new book to add to the ArrayList
+              inv.getInv().add(new Book(txtTitle.getText(), txtVolume.getText(),
+                      txtAuthor.getText(), txtGenre.getText(), txtShelfNumber.getText()));
+              secondStage.close(); // Closes the new Stage
       });
+      // Sets the locations of the nodes
       txtTitle.setTranslateY(10);
       txtTitle.setTranslateX(10);
 
@@ -130,6 +134,7 @@ public class BookSearch extends Application {
       BTSubmit.setTranslateX(10);
       BTSubmit.setTranslateY(150);
 
+      // Adds nodes to the pane
       pane.getChildren().add(txtTitle);
       pane.getChildren().add(txtVolume);
       pane.getChildren().add(txtAuthor);
@@ -137,18 +142,21 @@ public class BookSearch extends Application {
       pane.getChildren().add(txtShelfNumber);
       pane.getChildren().add(BTSubmit);
 
-      Scene scene = new Scene(pane, 500, 500);
+      Scene scene = new Scene(pane, 500, 500); // Creates a new scene with the pane in it, and sets its size
       secondStage.setTitle("Add Book to System"); // Set the stage title
       secondStage.setScene(scene); // Place the scene in the stage
       return secondStage;
   }
 
+  // Search Method for finding books based on a String
   public static void search(TextField txtSearch, Text result, ArrayList<Book> list){
       result.setText("");
       for(int i = 0; i < list.size(); i++){
+          // Compares input String to every string in the array, converted to lowercase so its case insensitive
           if(list.get(i).toString().toLowerCase()
                   .contains(txtSearch.getText().toLowerCase())){
 
+              // Prints the results
               result.setText(result.getText() + "\n" + list.get(i).toString());
           }
       }

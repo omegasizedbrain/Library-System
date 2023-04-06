@@ -4,19 +4,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class BookSearch extends Application {
@@ -169,6 +164,8 @@ public class BookSearch extends Application {
         TextField txtAuthor = new TextField("Author");
         TextField txtGenre = new TextField("Genre");
         TextField txtShelfNumber = new TextField("Shelf Number");
+        TextField txtSearch = new TextField("Search");
+        Button BTSearch = new Button("Search");
         Button BTSubmit2 = new Button("Submit");
         Button BTDel = new Button("Delete");
 
@@ -179,7 +176,7 @@ public class BookSearch extends Application {
             if(txtIndex.getText().equals("")){
                 text.setText(stringText);
             }else {
-                text.setText(inv.getInv().get(Integer.valueOf(txtIndex.getText())).toString());
+                text.setText(inv.getInv().get(Integer.parseInt(txtIndex.getText())).toString());
             }
             BTSubmit.setVisible(false);
             txtIndex.setVisible(false);
@@ -205,8 +202,10 @@ public class BookSearch extends Application {
             secondStage.close(); // Closes the new Stage
             result.setText(inv.setText()); // Redraws the list of books
         });
+        txtSearch.setOnAction(e -> search(txtSearch, text, inv.getInv())); // Allows you to press enter after typing to search
+        BTSearch.setOnAction(e -> search(txtSearch, text, inv.getInv())); // Allows you to press the search button when done typing
         // Sets the locations of the nodes
-        txtIndex.setTranslateY(10);
+        txtIndex.setTranslateY(60);
         txtIndex.setTranslateX(10);
 
         BTSubmit.setTranslateX(10);
@@ -214,6 +213,12 @@ public class BookSearch extends Application {
 
         txtTitle.setTranslateY(10);
         txtTitle.setTranslateX(10);
+
+        BTSearch.setTranslateY(9.5);
+        BTSearch.setTranslateX(120);
+
+        txtSearch.setTranslateX(10);
+        txtSearch.setTranslateY(10);
 
         txtVolume.setTranslateY(50);
         txtVolume.setTranslateX(10);
@@ -239,7 +244,7 @@ public class BookSearch extends Application {
         scrollPane.setContent(text);
 
         // Adds nodes to the pane
-        textPane.getChildren().addAll(txtIndex,BTSubmit);
+        textPane.getChildren().addAll(txtIndex,BTSubmit, txtSearch, BTSearch);
         textPane2.getChildren().addAll(txtTitle, txtVolume, txtAuthor, txtGenre, txtShelfNumber, BTSubmit2, BTDel);
 
         pane.getChildren().addAll(textPane, scrollPane);
@@ -255,11 +260,11 @@ public class BookSearch extends Application {
   public static void search(TextField txtSearch, Text result, ArrayList<Book> list){
       result.setText("");
       for(int i = 0; i < list.size(); i++){
-          // Compares input String to every string in the array, converted to lowercase so its case insensitive
+          // Compares input String to every string in the array, converted to lowercase so its case-insensitive
           if(list.get(i).toString().toLowerCase()
                   .contains(txtSearch.getText().toLowerCase())){
               // Prints the results
-              result.setText(result.getText() + "\n" + "Index " + i + ": " + list.get(i).toString() + "\n");
+              result.setText(result.getText() + "\n" + "Index " + i + ": \n" + list.get(i).toString() + "\n");
           }
       }
   }

@@ -54,7 +54,7 @@ public class Library {
 	public String setText(){
 		String result = "";
 		for(int i = 0; i < inventory.size(); i++) {
-			result+= "Index " + i + ": " + inventory.get(i).toString() + "\n" + "\n";
+			result+= "Index " + i + ": \n" + inventory.get(i).toString() + "\n" + "\n";
 		}
 		return result;
 	}

@@ -157,12 +157,7 @@ public class BookSearch extends Application {
         Pane textPane2 = new Pane();
         ScrollPane scrollPane = new ScrollPane();
 
-        String stringText = "";
-
-        for(int i = 0; i < inv.getInv().size(); i++) {
-            stringText+= "Index " + i + ": " + inv.getInv().get(i).toString() + "\n";
-        }
-        String resultCopy = stringText;
+        String stringText = inv.setText();
 
         Text text = new Text(stringText);
         // Creates 5 TextField nodes and the submit button
@@ -182,7 +177,7 @@ public class BookSearch extends Application {
         // Submit button action
         BTSubmit.setOnAction(e -> {
             if(txtIndex.getText().equals("")){
-                text.setText(resultCopy);
+                text.setText(stringText);
             }else {
                 text.setText(inv.getInv().get(Integer.valueOf(txtIndex.getText())).toString());
             }
@@ -191,16 +186,7 @@ public class BookSearch extends Application {
             pane.getChildren().add(textPane2);
 
         });
-        txtIndex.setOnAction(e -> {
-            if(txtIndex.getText().equals("")){
-                text.setText(resultCopy);
-            }else {
-                text.setText(inv.getInv().get(Integer.valueOf(txtIndex.getText())).toString());
-            }
-            BTSubmit.setVisible(false);
-            txtIndex.setVisible(false);
-            pane.getChildren().add(textPane2);
-        });
+        txtIndex.setOnAction(BTSubmit.getOnAction());
 
         BTSubmit2.setOnAction(e -> {
             inv.getInv().get(Integer.parseInt(txtIndex.getText())).setAuthor(txtAuthor.getText());
@@ -272,9 +258,8 @@ public class BookSearch extends Application {
           // Compares input String to every string in the array, converted to lowercase so its case insensitive
           if(list.get(i).toString().toLowerCase()
                   .contains(txtSearch.getText().toLowerCase())){
-
               // Prints the results
-              result.setText(result.getText() + "\n" + list.get(i).toString());
+              result.setText(result.getText() + "\n" + "Index " + i + ": " + list.get(i).toString() + "\n");
           }
       }
   }

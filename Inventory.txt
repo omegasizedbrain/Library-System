@@ -1,12 +1,17 @@
-Jobless Reincarnation/1/Rifunji Na Maganote/Graphic Novels/7
-Jobless Reincarnation/2/Rifunji Na Maganote/Graphic Novels/7
-Jobless Reincarnation/3/Rifunji Na Maganote/Graphic Novels/7
-Jobless Reincarnation/4/Rifunji Na Maganote/Graphic Novels/7
+Percy Jackson/2/Rick Riordan/Fantasy/5
+Percy Jackson/3/Rick Riordan/Fantasy/5
+Percy Jackson/4/Rick Riordan/Fantasy/5
+Star Wars/1/George Lucas/Sci Fi/2
+Star Wars/2/George Lucas/Sci Fi/2
+Star Wars/3/George Lucas/Sci Fi/2
+Jobless Reincarnation/1/Rifunji Na Maganote/Fantasy/7
+Jobless Reincarnation/2/Rifunji Na Maganote/Fantasy/7
+Jobless Reincarnation/3/Rifunji Na Maganote/Fantasy/7
+Jobless Reincarnation/4/Rifunji Na Maganote/Fantasy/7
 Overlord/14/Kugane Maruyama/Graphic Novels/6
 Overlord/10/Kugane Maruyama/Graphic Novels/6
 Overlord/6/Kugane Maruyama/Graphic Novels/6
-Harry Potter/1/JK rowling/fantasy/5
-Harry Potter/2/JK rowling/fantasy/5
-Harry Potter/4/JK rowling/fantasy/5
-The Vagina Bible/1/somebody/Education/1
+Harry Potter/1/J.K. Rowling/fantasy/5
+Harry Potter/2/J.K. Rowling/fantasy/5
+Harry Potter/4/J.K. Rowling/fantasy/5
 Calculus and Vectors/1/someone else/Education/2

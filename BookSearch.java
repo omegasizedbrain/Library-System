@@ -180,6 +180,8 @@ public class BookSearch extends Application {
             }
             BTSubmit.setVisible(false);
             txtIndex.setVisible(false);
+            txtSearch.setVisible(false);
+            BTSearch.setVisible(false);
             pane.getChildren().add(textPane2);
 
         });
